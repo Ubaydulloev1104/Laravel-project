@@ -8,4 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class Lacation extends Model
 {
     use HasFactory;
+    public $tabil="lacation";
 }

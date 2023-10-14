@@ -54,32 +54,13 @@
 
               <div class="row form-group">
                 <div class="col-md-12"><h3>Тип вакансии</h3></div>
+                @foreach($jobTypes as $tupe)
                 <div class="col-md-12 mb-3 mb-md-0">
                   <label for="option-job-type-1">
-                    <input type="radio" id="option-job-type-1" name="job-type"> На постоянной основе
+                    <input value="{{$type}}" type="radio" id="option-job-type-1" name="job-type"> {{$type=>name}}
                   </label>
                 </div>
-                <div class="col-md-12 mb-3 mb-md-0">
-                  <label for="option-job-type-2">
-                    <input type="radio" id="option-job-type-2" name="job-type"> Неполная занятость
-                  </label>
-                </div>
-
-                <div class="col-md-12 mb-3 mb-md-0">
-                  <label for="option-job-type-3">
-                    <input type="radio" id="option-job-type-3" name="job-type"> Freelance
-                </div>
-                <div class="col-md-12 mb-3 mb-md-0">
-                  <label for="option-job-type-4">
-                    <input type="radio" id="option-job-type-4" name="job-type"> стажировка
-                  </label>
-                </div>
-                <div class="col-md-12 mb-3 mb-md-0">
-                  <label for="option-job-type-4">
-                    <input type="radio" id="option-job-type-4" name="job-type"> Временный
-                  </label>
-                </div>
-
+                @endforeach
               </div>
 
               <div class="row form-group mb-4">
