@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\AboutController;
+use App\Http\Controllers\BlogController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\NewpostController;
 use App\Http\Controllers\JobsingleController;
@@ -20,6 +21,7 @@ use App\Http\Controllers\ContactController;
 */
 Route::get('/', [IndexController::class, 'index']);
 Route::get('/about',[AboutController::class, 'about']);
+Route::get('/blog',[BlogController::class, 'blog']);
 Route::get('/category',[CategoryController::class, 'category']);
 Route::get('/newpost',[NewpostController::class, 'newpost']);
 Route::get('/jobsingle',[JobsingleController::class, 'jobsingle']);
