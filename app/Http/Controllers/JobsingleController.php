@@ -8,6 +8,6 @@ class JobsingleController extends Controller
 {
     public function jobsingle(){
 
-        return view('job-single');
+        return view('jobsingle');
     }
 }
