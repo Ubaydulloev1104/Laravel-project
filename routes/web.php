@@ -1,8 +1,12 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\PhotoController;
+use App\Http\Controllers\IndexController;
 use App\Http\Controllers\AboutController;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\NewpostController;
+use App\Http\Controllers\JobsingleController;
+use App\Http\Controllers\ContactController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,6 +18,11 @@ use App\Http\Controllers\AboutController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/', [PhotoController::class, 'index']);
+Route::get('/', [IndexController::class, 'index']);
 Route::get('/about',[AboutController::class, 'about']);
+Route::get('/category',[CategoryController::class, 'category']);
+Route::get('/newpost',[NewpostController::class, 'newpost']);
+Route::get('/jobsingle',[JobsingleController::class, 'jobsingle']);
+Route::get('/contact',[ContactController::class, 'contact']);
+
 
