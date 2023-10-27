@@ -1,7 +1,7 @@
 @extends('layout')
 
 @section('title')
-   Post a Job
+    New-Post
 @endsection
 
 @section('banner')
@@ -11,107 +11,106 @@
         <p class="mb-0 unit-6"><a href="index.html">Home</a> <span class="sep">></span> <span>Post a Job</span></p>
       </div>
     </div>
+
+
 @endsection
 
 @section('content')
- <div class="site-section bg-light">
+<div class="site-section bg-light">
       <div class="container">
         <div class="row">
-       
           <div class="col-md-12 col-lg-8 mb-5">
-          
-            
-          
-            <form action="#" class="p-5 bg-white">
-              
+            <form action="{{route('job.create')}}" method="post" class="p-5 bg-white">
+              @csrf 
               <div class="row form-group">
                 <div class="col-md-12 mb-3 mb-md-0">
-                  <label for="option-price-1">
-                    <input type="checkbox" id="option-price-1"> <span class="text-success">$300</span> На 30 дней
-                  </label>
-                </div>
-                <div class="col-md-12 mb-3 mb-md-0">
-                  <label for="option-price-2">
-                    <input type="checkbox" id="option-price-2"> <span class="text-success">$200</span> / Ежемесячно повторяющийся
-                  </label>
-                </div>
-              </div>
-
-              <div class="row form-group">
-                <div class="col-md-12 mb-3 mb-md-0">
-                  <label class="font-weight-bold" for="fullname">Должность</label>
-                  <input type="text" id="fullname" class="form-control" placeholder="eg. Full Stack Frontend">
+                  <label class="font-weight-bold" for="fullname">Название</label>
+                  <input type="text" id="fullname" class="form-control" name="title" placeholder="eg. Full Stack Frontend">
                 </div>
               </div>
 
               <div class="row form-group mb-5">
                 <div class="col-md-12 mb-3 mb-md-0">
                   <label class="font-weight-bold" for="fullname">Компания</label>
-                  <input type="text" id="fullname" class="form-control" placeholder="eg. Facebook, Inc.">
+                  <select name="company_id" id="company" class="form-control">
+                  @foreach($companies as $company)
+                    <option value="{{$company->id}}">{{$company->name}}</option>
+                  @endforeach
+                  </select>
                 </div>
               </div>
-
-
               <div class="row form-group">
                 <div class="col-md-12"><h3>Тип вакансии</h3></div>
-                @foreach($jobTypes as $tupe)
+                @foreach($types as $type)
                 <div class="col-md-12 mb-3 mb-md-0">
                   <label for="option-job-type-1">
-                    <input value="{{$type}}" type="radio" id="option-job-type-1" name="job-type"> {{$type=>name}}
+                    <input value="{{$type->id}}" type="radio" id="option-job-type-1" 
+                    name="type_id"> {{$type->name}}
                   </label>
                 </div>
                 @endforeach
               </div>
 
               <div class="row form-group mb-4">
-                <div class="col-md-12"><h3>Расположение</h3></div>
+                <div class="col-md-12"><h3>Локация</h3></div>
                 <div class="col-md-12 mb-3 mb-md-0">
-                  <input type="text" class="form-control" placeholder="New York City">
+                  <select name="location_id" id="location" class="form-control">
+                  @foreach($locations as $location)
+                    <option value="{{$location->id}}">{{$location->name}}</option>
+                  @endforeach
+                  </select>
+                </div>
+              </div>
+              
+              <div class="row form-group">
+                <div class="col-md-12 mb-3 mb-md-0">
+                  <input type="text" name="salary" class="form-control"
+                   placeholder="Зарплата (сом.)">
                 </div>
               </div>
 
               <div class="row form-group">
-                <div class="col-md-12"><h3>Описание работы</h3></div>
+                <div class="col-md-12"><h3>Описание</h3></div>
                 <div class="col-md-12 mb-3 mb-md-0">
-                  <textarea name="" class="form-control" id="" cols="30" rows="5"></textarea>
+                  <textarea name="description" class="form-control" id="" cols="30" rows="5"></textarea>
                 </div>
               </div>
 
               <div class="row form-group">
                 <div class="col-md-12">
-                  <input type="submit" value="Post" class="btn btn-primary  py-2 px-5">
+                  <button type="submit" value="Post" class="btn btn-primary  py-2 px-5">
+                    Добавить
+                  </button>
                 </div>
               </div>
-
-  
             </form>
           </div>
 
           <div class="col-lg-4">
             <div class="p-4 mb-3 bg-white">
-              <h3 class="h5 text-black mb-3">Контактная информация</h3>
-              <p class="mb-0 font-weight-bold">Адрес</p>
-              <p class="mb-4">203 Fake St. Mountain View, Сан-Франциско, Калифорния, США</p>
+              <h3 class="h5 text-black mb-3">Contact Info</h3>
+              <p class="mb-0 font-weight-bold">Address</p>
+              <p class="mb-4">203 Fake St. Mountain View, San Francisco, California, USA</p>
 
-              <p class="mb-0 font-weight-bold">Телефон</p>
+              <p class="mb-0 font-weight-bold">Phone</p>
               <p class="mb-4"><a href="#">+1 232 3235 324</a></p>
 
-              <p class="mb-0 font-weight-bold">Адрес электронной почты</p>
+              <p class="mb-0 font-weight-bold">Email Address</p>
               <p class="mb-0"><a href="#">youremail@domain.com</a></p>
 
             </div>
-            
+
             <div class="p-4 mb-3 bg-white">
-              <h3 class="h5 text-black mb-3">Больше информации</h3>
-              <p>Заказчику очень важно обратить внимание на процесс адиписки.  Даже вправо, дальше, здесь проявляется гибкость Архитуса.  Отличие достигается только терпением боли</p>
-              <p><a href="#" class="btn btn-primary  py-2 px-4">Узнать больше</a></p>
+              <h3 class="h5 text-black mb-3">More Info</h3>
+              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsa ad iure porro mollitia architecto hic consequuntur. Distinctio nisi perferendis dolore, ipsa consectetur</p>
+              <p><a href="#" class="btn btn-primary  py-2 px-4">Learn More</a></p>
             </div>
           </div>
         </div>
       </div>
     </div>
 
-   
+
 
 
     <div class="site-section">
@@ -121,7 +120,7 @@
             <h2>Frequently Ask Questions</h2>
           </div>
         </div>
-        
+
 
         <div class="row justify-content-center" data-aos="fade" data-aos-delay="100">
           <div class="col-md-8">
@@ -136,7 +135,7 @@
                 </div>
               </div>
             </div> <!-- .accordion-item -->
-            
+
             <div class="accordion-item">
               <h3 class="mb-0 heading">
                 <a class="btn-block" data-toggle="collapse" href="#collapseTwo" role="button" aria-expanded="false" aria-controls="collapseTwo">How much pay for 3  months?<span class="icon"></span></a>
@@ -173,28 +172,9 @@
           </div>
           </div>
         </div>
-      
+
       </div>
     </div>
 
-    
 
-    
-    <div class="py-5 bg-primary">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-12">
-            <h2 class="text-white h4 font-weihgt-normal mb-4">Subscribe Newsletter</h2>
-          </div>
-        </div>
-        <form action="" class="row">
-          <div class="col-md-9">
-            <input type="text" class="form-control border-0 mb-3 mb-md-0" placeholder="Enter Your Email">
-          </div>
-          <div class="col-md-3">
-            <input type="submit" value="Send" class="btn btn-dark btn-block" style="height: 45px;">  
-          </div>
-        </form>
-      </div>
-    </div>
 @endsection
