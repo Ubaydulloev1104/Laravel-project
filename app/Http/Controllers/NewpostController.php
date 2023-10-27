@@ -10,15 +10,20 @@ use Illuminate\Http\Request;
 class NewpostController extends Controller
 {
     public function newpost(){
+        $locations = Location::all();
+        $jobTypes = JobType::all();
+        $companies = Company::all();
 
-        $lacations=lacation::all();
-        $jobTypes=jobType::all();
-        $Companys=Company::all();
-
-        return view('new-post',[
-            'lacations'=>$lacations,
-            'jobTypes'=>$jobTypes,
-            'Companys'=>$Companys,
+        return view('new-post', [
+            'locations' => $locations, 
+            'types'     => $jobTypes, 
+            'companies' => $companies
         ]);
+    }
+
+    public function create(Request $request){
+        Job::create($request->all());
+        
+        return redirect('/');
     }
 }

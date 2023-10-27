@@ -9,4 +9,8 @@ class Company extends Model
 {
     use HasFactory;
     public $tabil="company";
+    public function job()
+    {
+        return $this->belongsTo(Job::class);
+    }
 }

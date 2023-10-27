@@ -11,17 +11,23 @@ use App\Models\Company;
 class Jobs extends Model
 {
     use HasFactory;
-    public $tabil="jobs";
+
+    protected $fillable = ['title', 'salary', 'type_id', 'location_id', 'description', 'company_id'];
+
+    public $table = 'job';
+
     public function types()
     {
-        return $this->hasMany(JobType::class,'id','type_id');
+        return $this->hasMany(JobType::class, 'id', 'type_id');
     }
-    public function companys()
+
+    public function companies()
     {
-        return $this->hasMany(JobType::class,'id','company_id');
+        return $this->hasMany(Company::class, 'id', 'company_id');
     }
-    public function lacations()
+
+    public function locations()
     {
-        return $this->hasMany(JobType::class,'id','location_id');
+        return $this->hasMany(Location::class, 'id', 'location_id)');
     }
 }

@@ -9,4 +9,8 @@ class Lacation extends Model
 {
     use HasFactory;
     public $tabil="lacation";
+     public function job()
+    {
+        return $this->belongsTo(Job::class);
+    }
 }
