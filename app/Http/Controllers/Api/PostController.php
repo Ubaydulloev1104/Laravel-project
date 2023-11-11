@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StorePostRequest;
 use App\Models\Post;
 use Illuminate\Http\Request;
 
@@ -38,9 +39,14 @@ class PostController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StorePostRequest $request)
     {
-        //
+        $post=Post::create($request->all());
+        return response()->json([
+            'status' =>true,
+            'message'=>'Post Was Updated SuccessFully!',
+            'post'=>$post
+        ],200);
     }
 
     /**
@@ -72,9 +78,14 @@ class PostController extends Controller
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Post $post)
+    public function update(StorePostRequest $request, Post $post)
     {
-        //
+        $post->update($request->all());
+        return response()->json([
+            'status'=>true,
+            'message'=>'Post Wos Updated SuccessFully!',
+            'post'=>$post
+        ],200);
     }
 
     /**
@@ -85,6 +96,10 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
-        //
+        $post->delete();
+        return response()->json([
+            'status'=>true,
+            'message'=>'Post Was Delered Successfully'
+        ],200);
     }
 }
